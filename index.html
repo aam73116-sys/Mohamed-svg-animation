@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amgad — SVG Animation Showcase</title>
+  <!-- Link to the external stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- HEADER: one h1 for the whole page -->
+  <header>
+    <h1>SVG Animation Showcase</h1>
+  </header>
+
+  <main>
+
+    <!-- ===== Example 1: Hover transition ===== -->
+    <section>
+      <h2>1. Hover Transition</h2>
+      <!-- role="img" + <title> + aria-labelledby make the SVG readable by screen readers -->
+      <svg class="hover-icon" viewBox="0 0 100 100" role="img" aria-labelledby="hover-title">
+        <title id="hover-title">A star that turns gold and grows on hover</title>
+        <polygon points="50,10 61,40 93,40 67,60 77,93 50,73 23,93 33,60 7,40 39,40" />
+      </svg>
+      <!-- Caption: explains the technique used -->
+      <p>Caption: this uses a CSS <code>transition</code> on fill and transform, so the star smoothly changes color and grows when you hover over it.</p>
+    </section>
+
+    <!-- ===== Example 2: Spinning loader ===== -->
+    <section>
+      <h2>2. Spinning Loader</h2>
+      <svg class="spinner" viewBox="0 0 50 50" role="img" aria-labelledby="spin-title">
+        <title id="spin-title">Loading spinner</title>
+        <!-- stroke-dasharray shows only part of the circle so it looks like an arc -->
+        <circle cx="25" cy="25" r="20" fill="none" stroke-width="5"
+                stroke-linecap="round" stroke-dasharray="90 150" />
+      </svg>
+      <p>Caption: this uses a <code>@keyframes spin</code> rule with an infinite linear animation to rotate the arc forever.</p>
+    </section>
+
+    <!-- ===== Example 3: Self-drawing line ===== -->
+    <section>
+      <h2>3. Self-Drawing Line</h2>
+      <svg class="draw-svg" viewBox="0 0 200 60" role="img" aria-labelledby="draw-title">
+        <title id="draw-title">A line that draws itself across the screen</title>
+        <!-- The path draws itself using stroke-dasharray + stroke-dashoffset -->
+        <path class="draw-line" d="M10,30 L190,30" fill="none" stroke="#7a3b2e" stroke-width="4" />
+      </svg>
+      <p>Caption: this uses the <code>stroke-dasharray</code> + <code>stroke-dashoffset</code> trick so the line appears to draw itself on page load.</p>
+    </section>
+
+    <!-- ===== Example 4: Fade-up entrance ===== -->
+    <section>
+      <h2>4. Fade-Up Entrance</h2>
+      <svg class="fade-in" viewBox="0 0 100 100" role="img" aria-labelledby="fade-title">
+        <title id="fade-title">A circle that fades in and rises up</title>
+        <circle cx="50" cy="50" r="35" fill="#c46a3f" />
+      </svg>
+      <p>Caption: this combines <code>opacity</code> and <code>translateY()</code> in one keyframe, with a short delay, so the shape fades in while moving up.</p>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer><p>&copy; 2026 Amgad</p></footer>
+
+  <!-- Reflection (100-200 words). Edit this to match YOUR experience. -->
+  <p class="reflection">
+    <strong>Reflection:</strong> The hardest animation for me was the self-drawing
+    line, because I had to understand how stroke-dasharray and stroke-dashoffset
+    work together. I looked it up and learned that stroke-dasharray sets the length
+    of the dash, and when it equals the whole line length, offsetting it hides the
+    line, then animating the offset to zero makes it look like the line is being
+    drawn. Outside of class I have seen these patterns in real life: the hover
+    transform on buttons and icons on almost every website, the spinning loader
+    whenever a page or app is loading, the self-drawing line in logo intro
+    animations on brand websites, and the fade-up entrance as sections appear while
+    scrolling down landing pages. Building all four myself helped me understand the
+    small details behind animations I see every day.
+  </p>
+
+</body>
+</html>
