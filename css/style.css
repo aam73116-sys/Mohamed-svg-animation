@@ -1,0 +1,101 @@
+/* ===== Page base styles ===== */
+body {
+  font-family: Arial, sans-serif;
+  color: #1f2933;
+  margin: 0;
+  padding: 0 24px 40px;
+  line-height: 1.6;
+}
+
+header, footer {
+  text-align: center;
+  padding: 20px;
+}
+
+section {
+  margin: 32px 0;
+  text-align: center;
+}
+
+
+/* ===== Example 1 — Hover transition ===== */
+/* .hover-icon is the star. transition makes the change smooth (not instant).
+   transform-origin: center makes it grow from the middle, not a corner. */
+.hover-icon {
+  width: 100px;
+  height: 100px;
+  transform-origin: center;
+  transition: transform 0.3s ease, fill 0.3s ease;
+}
+/* The star shape starts blue */
+.hover-icon polygon {
+  fill: #7a3b2e;
+  transition: fill 0.3s ease;
+}
+/* On hover: the star grows slightly and tilts */
+.hover-icon:hover {
+  transform: scale(1.1) rotate(8deg);
+}
+/* On hover: the star turns gold */
+.hover-icon:hover polygon {
+  fill: #f0c419;
+}
+
+
+/* ===== Example 2 — Spinning loader ===== */
+/* @keyframes spin: rotates from 0 to a full 360 degrees */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+/* .spinner spins forever: 1s per turn, steady speed (linear), never stops (infinite) */
+.spinner {
+  width: 48px;
+  height: 48px;
+  transform-origin: center;
+  animation: spin 1s linear infinite;
+}
+.spinner circle {
+  stroke: #7a3b2e;
+}
+
+
+/* ===== Example 3 — Self-drawing line ===== */
+/* @keyframes draw: moves the dash offset from full length down to 0,
+   which makes the line appear to draw itself. */
+@keyframes draw {
+  from { stroke-dashoffset: 200; }
+  to   { stroke-dashoffset: 0; }
+}
+/* .draw-line starts fully hidden, then draws over 1.6s and STAYS drawn (forwards) */
+.draw-line {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: draw 1.6s ease-out forwards;
+}
+
+
+/* ===== Example 4 — Fade-up entrance ===== */
+/* @keyframes fade-up: starts invisible and lower, ends visible in place */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* .fade-in runs the fade-up once, after a 0.3s delay (both = keep start+end states) */
+.fade-in {
+  width: 100px;
+  height: 100px;
+  animation: fade-up 0.8s ease-out 0.3s both;
+}
+
+
+/* ===== REQUIRED — Reduced motion guard =====
+   For users who choose "reduce motion" in their system settings,
+   this turns all animations and transitions almost off, so nothing
+   spins, draws, or moves (helps people who get dizzy from motion). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
